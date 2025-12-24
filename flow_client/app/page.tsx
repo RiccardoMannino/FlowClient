@@ -1,23 +1,24 @@
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
+import Footer from "@/components/ui/Footer";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full flex-col items-center py-32 px-16 bg-white dark:bg-black ">
-       <h1 className="font-semibold text-[clamp(2rem,4vw+1rem,6rem)]">FlowClient</h1>
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h2 className="text-[clamp(1.5rem,4vw+1rem,2.5rem)] leading-10 tracking-tight text-black dark:text-zinc-50">
+    <>
+      <main className="grid min-h-screen w-full grid-cols-1 place-items-center grid-flow-row ">
+       <h1 className="font-semibold text-[clamp(2rem,4vw+1rem,6rem)] self-end">FlowClient</h1>
+        <div className="flex flex-col items-center gap-6 text-center self-start">
+          <h2 className="text-[clamp(1.5rem,4vw+1rem,2.5rem)] tracking-tight text-black dark:text-zinc-50">
             Mini CRM per freelance.
           </h2>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row mt-10">
+        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row self-start">
          <Link
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-39.5"
             href=""
             target="_blank"
             rel="noopener noreferrer"
-          >
+            >
         
           Inizia Gratis
           </Link>
@@ -26,7 +27,7 @@ export default function Home() {
             href="/login"
             target="_blank"
             rel="noopener noreferrer"
-          >
+            >
            Login
           </Link>
         </div>
@@ -48,11 +49,15 @@ export default function Home() {
           <CardContent>
             ⏰ Mai più follow-up dimenticati
           </CardContent>
-          <CardDescription className="text-center">  Attività e reminder automatici</CardDescription>
+          <CardDescription className="text-center"> Attività e reminder automatici</CardDescription>
         </Card>
         </div>
+             
       </main>
-      <footer></footer>
-    </div>
+      <div className="">
+          <Footer/>
+      </div>
+            </>
+
   );
 }
