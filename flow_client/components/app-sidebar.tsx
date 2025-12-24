@@ -35,9 +35,9 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Riccardo",
+    email: "manninoriccardo3@gmails.com",
+    avatar: "",
   },
   navMain: [
     {
@@ -116,17 +116,17 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Settings",
+      title: "Impostazioni",
       url: "#",
       icon: IconSettings,
     },
     {
-      title: "Get Help",
+      title: "Aiuto",
       url: "#",
       icon: IconHelp,
     },
     {
-      title: "Search",
+      title: "Cerca",
       url: "#",
       icon: IconSearch,
     },
@@ -158,10 +158,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
+                <IconInnerShadowTop className="size-5!" />
                 <span className="text-base font-semibold">Acme Inc.</span>
               </a>
             </SidebarMenuButton>
