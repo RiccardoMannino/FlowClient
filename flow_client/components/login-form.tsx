@@ -1,15 +1,15 @@
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/Button"
+import { Card  } from "@/components/ui/card"
 import {
   Field,
   FieldDescription,
   FieldGroup,
-  FieldLabel,
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { Label } from "./ui/label"
 
 export function LoginForm({
   className,
@@ -18,7 +18,7 @@ export function LoginForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
-        <CardContent className="grid p-0 md:grid-cols-2">
+        <Card.Content className="grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8">
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
@@ -28,7 +28,7 @@ export function LoginForm({
                 </p>
               </div>
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -38,18 +38,18 @@ export function LoginForm({
               </Field>
               <Field>
                 <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <Label htmlFor="password">Password</Label>
                   <a
                     href="#"
                     className="ml-auto text-sm underline-offset-2 hover:underline"
                   >
-                  Hai dimenticato password?
+                  Hai dimenticato la password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input placeholder={"Inserisci Password"} id="password" type="password" required />
               </Field>
               <Field>
-                <Button type="submit">Accedi</Button>
+                <Button type="submit" className="text-center">Accedi</Button>
               </Field>
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 O continua con
@@ -90,14 +90,14 @@ export function LoginForm({
           </form>
           <div className="bg-muted relative hidden md:block">
             <Image
-              src="/placeholder.svg"
+              src="/generated-image.png"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
               width={20}
               height={20}
             />
           </div>
-        </CardContent>
+        </Card.Content>
       </Card>
       <FieldDescription className="px-6 text-center">
         Cliccando su continua, accetti i nostri <a href="#">Termini di Utilizzo</a>{" "}
