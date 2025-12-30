@@ -85,10 +85,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
   Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -116,7 +112,7 @@ export const schema = z.object({
   reviewer: z.string(),
 })
 
-// Create a separate component for the drag handle
+// Create a separate component for the drag handle libreria drag n drop
 function DragHandle({ id }: { id: number }) {
   const { attributes, listeners } = useSortable({
     id,
@@ -267,19 +263,19 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
             Reviewer
           </Label>
           <Select>
-            <SelectTrigger
+            <Select.Trigger
               className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
+              
               id={`${row.original.id}-reviewer`}
             >
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
+              <Select.Value placeholder="Assign reviewer" />
+            </Select.Trigger>
+            <Select.Content align="end">
+              <Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
+              <Select.Item value="Jamik Tashpulatov">
                 Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
+              </Select.Item>
+            </Select.Content>
           </Select>
         </>
       )
@@ -321,7 +317,7 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
       data-state={row.getIsSelected() && "selected"}
       data-dragging={isDragging}
       ref={setNodeRef}
-      className="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
+      className="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80 "
       style={{
         transform: CSS.Transform.toString(transform),
         transition: transition,
@@ -411,19 +407,18 @@ export function DataTable({
           View
         </Label>
         <Select defaultValue="outline">
-          <SelectTrigger
+          <Select.Trigger
             className="flex w-fit @4xl/main:hidden"
-            size="sm"
             id="view-selector"
           >
-            <SelectValue placeholder="Select a view" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="outline">Outline</SelectItem>
-            <SelectItem value="past-performance">Past Performance</SelectItem>
-            <SelectItem value="key-personnel">Key Personnel</SelectItem>
-            <SelectItem value="focus-documents">Focus Documents</SelectItem>
-          </SelectContent>
+            <Select.Value placeholder="Select a view" />
+          </Select.Trigger>
+          <Select.Content>
+            <Select.Item value="outline">Outline</Select.Item>
+            <Select.Item value="past-performance">Past Performance</Select.Item>
+            <Select.Item value="key-personnel">Key Personnel</Select.Item>
+            <Select.Item value="focus-documents">Focus Documents</Select.Item>
+          </Select.Content>
         </Select>
         <TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
           <TabsTrigger value="outline">Outline</TabsTrigger>
@@ -440,8 +435,8 @@ export function DataTable({
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 <IconLayoutColumns />
-                <span className="hidden lg:inline">Customize Columns</span>
-                <span className="lg:hidden">Columns</span>
+                <span className="hidden lg:inline">Personalizza Colonne</span>
+                <span className="lg:hidden">Colonne</span>
                 <IconChevronDown />
               </Button>
             </DropdownMenuTrigger>
@@ -471,7 +466,7 @@ export function DataTable({
           </DropdownMenu>
           <Button variant="outline" size="sm">
             <IconPlus />
-            <span className="hidden lg:inline">Add Section</span>
+            <span className="hidden lg:inline">Aggiungi Sezione</span>
           </Button>
         </div>
       </div>
@@ -488,7 +483,7 @@ export function DataTable({
             id={sortableId}
           >
             <Table>
-              <TableHeader className="bg-muted sticky top-0 z-10">
+              <TableHeader className="sticky top-0 z-10">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
@@ -506,7 +501,7 @@ export function DataTable({
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody className="**:data-[slot=table-cell]:first:w-8">
+              <TableBody className="">
                 {table.getRowModel().rows?.length ? (
                   <SortableContext
                     items={dataIds}
@@ -538,7 +533,7 @@ export function DataTable({
           <div className="flex w-full items-center gap-8 lg:w-fit">
             <div className="hidden items-center gap-2 lg:flex">
               <Label htmlFor="rows-per-page" className="text-sm font-medium">
-                Rows per page
+                Righe per pagina
               </Label>
               <Select
                 value={`${table.getState().pagination.pageSize}`}
@@ -546,22 +541,22 @@ export function DataTable({
                   table.setPageSize(Number(value))
                 }}
               >
-                <SelectTrigger size="sm" className="w-20" id="rows-per-page">
-                  <SelectValue
+                <Select.Trigger  className="w-20" id="rows-per-page">
+                  <Select.Value
                     placeholder={table.getState().pagination.pageSize}
                   />
-                </SelectTrigger>
-                <SelectContent side="top">
+                </Select.Trigger>
+                <Select.Content side="top">
                   {[10, 20, 30, 40, 50].map((pageSize) => (
-                    <SelectItem key={pageSize} value={`${pageSize}`}>
+                    <Select.Item key={pageSize} value={`${pageSize}`}>
                       {pageSize}
-                    </SelectItem>
+                    </Select.Item>
                   ))}
-                </SelectContent>
+                </Select.Content>
               </Select>
             </div>
             <div className="flex w-fit items-center justify-center text-sm font-medium">
-              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              Pagina {table.getState().pagination.pageIndex + 1} di{" "}
               {table.getPageCount()}
             </div>
             <div className="ml-auto flex items-center gap-2 lg:ml-0">
@@ -571,7 +566,7 @@ export function DataTable({
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to first page</span>
+                <span className="sr-only">Vai alla prima pagina</span>
                 <IconChevronsLeft />
               </Button>
               <Button
@@ -581,7 +576,7 @@ export function DataTable({
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to previous page</span>
+                <span className="sr-only">Vai alla pagina precedente</span>
                 <IconChevronLeft />
               </Button>
               <Button
@@ -591,7 +586,7 @@ export function DataTable({
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to next page</span>
+                <span className="sr-only">Vai alla prossima pagina</span>
                 <IconChevronRight />
               </Button>
               <Button
@@ -601,7 +596,7 @@ export function DataTable({
                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to last page</span>
+                <span className="sr-only">Vai all&apos;ultima pagina</span>
                 <IconChevronsRight />
               </Button>
             </div>
@@ -731,40 +726,40 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
               <div className="flex flex-col gap-3">
                 <Label htmlFor="type">Type</Label>
                 <Select defaultValue={item.type}>
-                  <SelectTrigger id="type" className="w-full">
-                    <SelectValue placeholder="Select a type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Table of Contents">
+                  <Select.Trigger id="type" className="w-full">
+                    <Select.Value placeholder="Select a type" />
+                  </Select.Trigger>
+                  <Select.Content>
+                    <Select.Item value="Table of Contents">
                       Table of Contents
-                    </SelectItem>
-                    <SelectItem value="Executive Summary">
+                    </Select.Item>
+                    <Select.Item value="Executive Summary">
                       Executive Summary
-                    </SelectItem>
-                    <SelectItem value="Technical Approach">
+                    </Select.Item>
+                    <Select.Item value="Technical Approach">
                       Technical Approach
-                    </SelectItem>
-                    <SelectItem value="Design">Design</SelectItem>
-                    <SelectItem value="Capabilities">Capabilities</SelectItem>
-                    <SelectItem value="Focus Documents">
+                    </Select.Item>
+                    <Select.Item value="Design">Design</Select.Item>
+                    <Select.Item value="Capabilities">Capabilities</Select.Item>
+                    <Select.Item value="Focus Documents">
                       Focus Documents
-                    </SelectItem>
-                    <SelectItem value="Narrative">Narrative</SelectItem>
-                    <SelectItem value="Cover Page">Cover Page</SelectItem>
-                  </SelectContent>
+                    </Select.Item>
+                    <Select.Item value="Narrative">Narrative</Select.Item>
+                    <Select.Item value="Cover Page">Cover Page</Select.Item>
+                  </Select.Content>
                 </Select>
               </div>
               <div className="flex flex-col gap-3">
                 <Label htmlFor="status">Status</Label>
                 <Select defaultValue={item.status}>
-                  <SelectTrigger id="status" className="w-full">
-                    <SelectValue placeholder="Select a status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Done">Done</SelectItem>
-                    <SelectItem value="In Progress">In Progress</SelectItem>
-                    <SelectItem value="Not Started">Not Started</SelectItem>
-                  </SelectContent>
+                  <Select.Trigger id="status" className="w-full">
+                    <Select.Value placeholder="Select a status" />
+                  </Select.Trigger>
+                  <Select.Content>
+                    <Select.Item value="Done">Done</Select.Item>
+                    <Select.Item value="In Progress">In Progress</Select.Item>
+                    <Select.Item value="Not Started">Not Started</Select.Item>
+                  </Select.Content>
                 </Select>
               </div>
             </div>
@@ -781,16 +776,16 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
             <div className="flex flex-col gap-3">
               <Label htmlFor="reviewer">Reviewer</Label>
               <Select defaultValue={item.reviewer}>
-                <SelectTrigger id="reviewer" className="w-full">
-                  <SelectValue placeholder="Select a reviewer" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-                  <SelectItem value="Jamik Tashpulatov">
+                <Select.Trigger id="reviewer" className="w-full">
+                  <Select.Value placeholder="Select a reviewer" />
+                </Select.Trigger>
+                <Select.Content>
+                  <Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
+                  <Select.Item value="Jamik Tashpulatov">
                     Jamik Tashpulatov
-                  </SelectItem>
-                  <SelectItem value="Emily Whalen">Emily Whalen</SelectItem>
-                </SelectContent>
+                  </Select.Item>
+                  <Select.Item value="Emily Whalen">Emily Whalen</Select.Item>
+                </Select.Content>
               </Select>
             </div>
           </form>

@@ -9,7 +9,7 @@ import {
 export function SectionCards() {
   return (
     <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-      <Card className="@container/card">
+      <Card className="@container/card p-4">
         <Card.Header>
           <Card.Description>Total Revenue</Card.Description>
           <Card.Title className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -31,7 +31,7 @@ export function SectionCards() {
           </div>
         </Card.Footer>
       </Card>
-      <Card className="@container/card">
+      <Card className="@container/card p-4">
         <Card.Header>
           <Card.Description>New Customers</Card.Description>
           <Card.Title className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -53,7 +53,7 @@ export function SectionCards() {
           </div>
         </Card.Footer>
       </Card>
-      <Card className="@container/card">
+      <Card className="@container/card p-4">
         <Card.Header>
           <Card.Description>Active Accounts</Card.Description>
           <Card.Title className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -73,7 +73,7 @@ export function SectionCards() {
           <div className="text-muted-foreground">Engagement exceed targets</div>
         </Card.Footer>
       </Card>
-      <Card className="@container/card">
+      <Card className="@container/card p-4">
         <Card.Header>
           <Card.Description>Growth Rate</Card.Description>
           <Card.Title className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
